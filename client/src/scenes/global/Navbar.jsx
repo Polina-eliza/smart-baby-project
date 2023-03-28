@@ -38,7 +38,7 @@ const Navbar = () => {
     >
       <Box
         onClick={() => navigate("/")}
-        sx={{ "&:hover": { cursor: "pointer" } }}
+        sx={{ "&:hover": { cursor: "pointer" }, fontSize: "30px" }}
         color={shades.secondary[500]}
       >
         SmartBaby
