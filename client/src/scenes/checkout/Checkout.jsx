@@ -6,7 +6,10 @@ import * as yup from "yup";
 import { shades } from "../../theme";
 import Payment from "./Payment";
 import Shipping from "./Shipping";
-// import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+
+const stripePromise = loadStripe("pk_test_51MqrxRIFXw62EJa3hEzI6neExbwJxeDdIqHM0q7mvRnBd489d6JRpyl4opdIFG9BhyPiLcPN9txXZOefgBt13lI8005pX1AvRk")
 
 const Checkout = () => {
 
@@ -18,7 +21,6 @@ const Checkout = () => {
     const handleFormSubmit = async (values, actions) => {
       setActiveStep(activeStep + 1);
 
-       // copies the billing address onto shipping address
     if (isFirstStep && values.shippingAddress.isSameAddress) {
       actions.setFieldValue("shippingAddress", {
         ...values.billingAddress,
@@ -34,12 +36,26 @@ const Checkout = () => {
   };
 
       async function makePayment(values) {
-    
+        const stripe = await stripePromise;
+    const requestBody = {
+      userName: [values.firstName, values.lastName].join(" "),
+      email: values.email,
+      products: cart.map(({ id, count }) => ({
+        id,
+        count,
+      })),
+    };
+
+    const response = await fetch("http://localhost:1337/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    });
+    const session = await response.json();
+    await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
       }
-
-
-    
-
 
   return (
     <Box width="80%" m="100px auto">
