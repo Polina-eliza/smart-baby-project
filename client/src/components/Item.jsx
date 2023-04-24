@@ -15,7 +15,7 @@ const Item = ({ item, width }) => {
     palette: { neutral },
   } = useTheme();
 
-  const { category, price, name, image } = item.attributes;
+  const { category, price, name, image } = item?.attributes;
   // const {
   //   data: {
   //     attributes: {
@@ -26,7 +26,7 @@ const Item = ({ item, width }) => {
   //   },
   // } = image;
 
-  const url=item.attributes.image.data.attributes.url
+
   return (
     <Box width={width}>
       <Box
@@ -38,7 +38,7 @@ const Item = ({ item, width }) => {
           alt={item.name}
           width="300px"
           height="300px"
-          src={`https://starfish-app-fymjm.ondigitalocean.app${item.attributes.image.data.attributes.url}`}
+          src={`https://starfish-app-fymjm.ondigitalocean.app${item?.attributes?.image?.data?.attributes?.url}`}
           onClick={() => navigate(`/item/${item.id}`)}
           style={{ cursor: "pointer" }}
         />
