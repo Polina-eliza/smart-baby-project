@@ -34,8 +34,8 @@ module.exports = createCoreController('api::order.order', ({ strapi }) =>({
                 payment_method_types: ["card"],
                 customer_email: email,
                 mode: "payment",
-                success_url: "http://localhost:1337/checkout/success",
-                cancel_url: "http://localhost:1337",
+                success_url: "https://idyllic-arithmetic-762432.netlify.app/checkout/success",
+                cancel_url: "https://idyllic-arithmetic-762432.netlify.app/",
                 line_items: lineItems,
               });
 
