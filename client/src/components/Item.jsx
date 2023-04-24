@@ -38,7 +38,7 @@ const Item = ({ item, width }) => {
           alt={item.name}
           width="300px"
           height="300px"
-          src={`http://localhost:1337${url}`}
+          src={`https://starfish-app-fymjm.ondigitalocean.app${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
           style={{ cursor: "pointer" }}
         />
