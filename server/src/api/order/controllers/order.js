@@ -34,8 +34,8 @@ module.exports = createCoreController('api::order.order', ({ strapi }) =>({
                 payment_method_types: ["card"],
                 customer_email: email,
                 mode: "payment",
-                success_url: "https://idyllic-arithmetic-762432.netlify.app/checkout/success",
-                cancel_url: "https://idyllic-arithmetic-762432.netlify.app/",
+                success_url: "https://smart-baby-project.vercel.app/checkout/success",
+                cancel_url: "https://smart-baby-project.vercel.app/",
                 line_items: lineItems,
               });
 
