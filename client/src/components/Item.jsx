@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { IconButton, Box, Typography, useTheme, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -6,7 +6,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../theme";
 import { addToCart } from "../state";
 import { useNavigate } from "react-router-dom";
-
 const Item = ({ item, width }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -16,16 +15,17 @@ const Item = ({ item, width }) => {
     palette: { neutral },
   } = useTheme();
 
-  const { category, price, name, image } = item.attributes;
-  const {
-    data: {
-      attributes: {
-        formats: {
-          medium: { url },
-        },
-      },
-    },
-  } = image;
+  const { category, price, name, image } = item?.attributes;
+  // const {
+  //   data: {
+  //     attributes: {
+  //       formats: {
+  //         medium: { url },
+  //       },
+  //     },
+  //   },
+  // } = image;
+
 
   return (
     <Box width={width}>
@@ -38,7 +38,7 @@ const Item = ({ item, width }) => {
           alt={item.name}
           width="300px"
           height="300px"
-          src={`http://localhost:1337${url}`}
+          src={`https://starfish-app-fymjm.ondigitalocean.app${item?.attributes?.image?.data?.attributes?.url}`}
           onClick={() => navigate(`/item/${item.id}`)}
           style={{ cursor: "pointer" }}
         />
